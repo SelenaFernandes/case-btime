@@ -1,0 +1,8 @@
+SELECT a.first_name, a.last_name
+FROM actor a
+JOIN (
+    SELECT actor_id, COUNT(*) AS num_filmes
+    FROM film_actor
+    GROUP BY actor_id
+    HAVING COUNT(*) >= 15
+) atores_populares ON a.actor_id = atores_populares.actor_id;
